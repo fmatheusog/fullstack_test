@@ -24,9 +24,9 @@ Create a product search engine that connects to the Mercado Livre and Buscapé p
 
 ## TO-DO list:
 
-- [ ] Initialize local repository
-- [ ] Create github repository
-- [ ] Create dev branch
+- [x] Initialize local repository
+- [x] Create github repository
+- [x] Create dev branch
 - [ ] Create Next project
 - [ ] Create NestJS project
 - [ ] Create mongodb docker container
