@@ -29,7 +29,7 @@ Create a product search engine that connects to the Mercado Livre and Buscapé p
 - [x] Create dev branch
 - [ ] Create Next project
 - [ ] Create NestJS project
-- [ ] Create mongodb docker container
+- [x] Create database (MongoDB Atlas)
 - [ ] Next enviroment configuration
 - [ ] Nest enviroment configuration
 - [ ] App layout
