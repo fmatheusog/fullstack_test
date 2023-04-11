@@ -20,16 +20,15 @@ Create a product search engine that connects to the Mercado Livre and Buscapé p
 - NestJS
 - MongoDB
 - Mongoose
-- Docker
 
 ## TO-DO list:
 
-- [ ] Initialize local repository
-- [ ] Create github repository
-- [ ] Create dev branch
-- [ ] Create Next project
-- [ ] Create NestJS project
-- [ ] Create mongodb docker container
+- [x] Initialize local repository
+- [x] Create github repository
+- [x] Create dev branch
+- [x] Create Next project
+- [x] Create NestJS project
+- [x] Create database (MongoDB Atlas)
 - [ ] Next enviroment configuration
 - [ ] Nest enviroment configuration
 - [ ] App layout
