@@ -13,10 +13,11 @@ const Home = () => {
               <li className="mx-4">
                 <select
                   className="bg-gray-400 rounded w-40 hover:bg-gray-400 p-1"
+                  defaultValue="all"
                   onChange={(event) => setSource(event.target.value)}
                   value={source}
                 >
-                  <option selected value="all">Todas</option>
+                  <option value="all">Todas</option>
                   <option value="mercado_livre">Mercado Livre</option>
                   <option value="buscape">Buscapé</option>
                 </select>
@@ -24,10 +25,12 @@ const Home = () => {
               <li className="mx-4">
               <select
                 className="bg-gray-400 rounded w-40 hover:bg-gray-400 p-1"
+                defaultValue=""
                 onChange={(event) => setCategory(event.target.value)}
                 value={category}
               >
-                  <option disabled selected value="">Categorias</option>
+                  <option disabled value="">Categorias</option>
+                  <option value="all">Todas</option>
                   <option value="geladeira">Geladeira</option>
                   <option value="tv">TV</option>
                   <option value="celular">Celular</option>
@@ -37,7 +40,7 @@ const Home = () => {
                 <input
                   className="bg-gray-200 w-48 rounded p-1"
                   onChange={(event) => setSearchString(event.target.value)}
-                  placeholder="search products"
+                  placeholder="buscar produtos"
                   type="text"
                   value={searchString}
                 />
