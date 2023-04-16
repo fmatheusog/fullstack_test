@@ -29,11 +29,15 @@ Create a product search engine that connects to the Mercado Livre and Buscapé p
 - [x] Create Next project
 - [x] Create NestJS project
 - [x] Create database (MongoDB Atlas)
-- [ ] Next enviroment configuration
-- [ ] Nest enviroment configuration
-- [ ] App layout
+- [x] Next enviroment configuration
+- [x] Nest enviroment configuration
+- [x] App layout
 - [ ] Mongoose configuration
-- [ ] API endpoint for storing search results
+- [ ] API endpoint for storing search results and getting products info
+- [x] Scraping methods
+  - [x] Buscapé scraping
+  - [x] Mercado livre scraping
+- [ ] Change endpoint from GET to POST
 - [ ] APIs integration
 - [ ] Tests
 - [ ] Deploy
