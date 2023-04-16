@@ -34,9 +34,9 @@ Create a product search engine that connects to the Mercado Livre and Buscapé p
 - [x] App layout
 - [ ] Mongoose configuration
 - [ ] API endpoint for storing search results and getting products info
-- [ ] Scraping methods
+- [x] Scraping methods
   - [x] Buscapé scraping
-  - [ ] Mercado livre scraping
+  - [x] Mercado livre scraping
 - [ ] Change endpoint from GET to POST
 - [ ] APIs integration
 - [ ] Tests
