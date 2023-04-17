@@ -22,7 +22,9 @@
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
+    "@nestjs/mongoose": "^9.2.2",
     "@nestjs/platform-express": "^9.0.0",
+    "mongoose": "^7.0.3",
     "nest-puppeteer": "^1.1.1",
     "puppeteer": "^19.8.5",
     "reflect-metadata": "^0.1.13",
