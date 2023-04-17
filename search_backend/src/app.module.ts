@@ -9,7 +9,10 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    PuppeteerModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
     MongooseModule.forRoot(process.env.MONGODB_URL),
     MongooseModule.forFeature([
       {
@@ -17,9 +20,7 @@ import { ConfigModule } from '@nestjs/config';
         schema: SearchSchema,
       },
     ]),
-    ConfigModule.forRoot({
-      envFilePath: '.env',
-    }),
+    PuppeteerModule.forRoot(),
   ],
   controllers: [ProductsController],
   providers: [ScrapingService, SearchService],
