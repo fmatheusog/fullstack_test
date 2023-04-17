@@ -9,9 +9,7 @@ import { SearchSchema } from './search/search.schema';
 @Module({
   imports: [
     PuppeteerModule.forRoot(),
-    MongooseModule.forRoot(
-      'mongodb+srv://fmatheusog:Pjd5anuEf49X2KLZ@db-product-search.k4xbzil.mongodb.net/?retryWrites=true&w=majority',
-    ),
+    MongooseModule.forRoot(process.env.MONGODB_URL),
     MongooseModule.forFeature([
       {
         name: 'Search',
