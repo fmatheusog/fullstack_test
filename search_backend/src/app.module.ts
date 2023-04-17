@@ -5,6 +5,7 @@ import { ScrapingService } from './scraping/scraping.service';
 import { SearchService } from './search/search.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SearchSchema } from './search/search.schema';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -16,6 +17,9 @@ import { SearchSchema } from './search/search.schema';
         schema: SearchSchema,
       },
     ]),
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+    }),
   ],
   controllers: [ProductsController],
   providers: [ScrapingService, SearchService],
