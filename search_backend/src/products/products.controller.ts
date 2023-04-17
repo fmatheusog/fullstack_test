@@ -1,6 +1,6 @@
 import { Body, Controller, HttpCode, Post } from '@nestjs/common';
-import { ScrapingService } from './scraping.service';
-import { filters } from './interfaces/filters.interface';
+import { ScrapingService } from '../scraping/scraping.service';
+import { filters } from '../interfaces/filters.interface';
 
 @Controller('/products')
 export class ProductsController {

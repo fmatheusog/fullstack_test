@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { BrowserContext } from 'puppeteer';
 import { InjectContext } from 'nest-puppeteer';
-import { filters } from './interfaces/filters.interface';
-import { product } from './interfaces/product.interface';
+import { filters } from '../interfaces/filters.interface';
+import { product } from '../interfaces/product.interface';
 
 // https://lista.mercadolivre.com.br/eletronicos-audio-video/televisores/
 // https://lista.mercadolivre.com.br/eletrodomesticos/refrigeracao/
@@ -47,6 +47,8 @@ export class ScrapingService {
     // Aguarda navegação pra página com os resultados
     await page.waitForNavigation();
 
+    const data: product[] = [];
+
     try {
       const links: string[] = await page.evaluate(() => {
         const cards = document.getElementsByClassName(
@@ -62,38 +64,38 @@ export class ScrapingService {
         return n;
       });
 
-      const data: product[] = [];
-
       for (let i = 0; i < links.length; i++) {
         page.goto(links[i]);
 
         await page.waitForNavigation();
 
-        console.log(page.url());
-
         const product = await page.evaluate(() => {
-          // Pegar os valores das informações (nome, preço, imagem)
-          const name = document.querySelector(
-            '.ui-pdp-header__title-container',
-          ).textContent;
+          try {
+            // Pegar os valores das informações (nome, preço, imagem)
+            const name = document.querySelector('.ui-pdp-title').textContent;
 
-          const price = document.querySelector(
-            '.andes-money-amount__fraction',
-          ).textContent;
+            const price = document.querySelector(
+              '.andes-money-amount__fraction',
+            ).textContent;
 
-          const priceCents = document.querySelector(
-            '.andes-money-amount__cents',
-          ).textContent;
+            const priceCents = document.querySelector(
+              '.andes-money-amount__cents',
+            ).textContent;
 
-          const image = document
-            .querySelector('.ui-pdp-gallery__figure > img')
-            .getAttribute('src');
+            const image = document
+              .querySelector('.ui-pdp-gallery__figure > img')
+              .getAttribute('src');
 
-          return {
-            name,
-            price: `R$ ${price},${priceCents}`,
-            image,
-          };
+            return {
+              name,
+              price: `R$ ${price},${priceCents}`,
+              image,
+            };
+          } catch (error) {
+            console.warn(error);
+
+            return;
+          }
         });
 
         data.push({
@@ -113,7 +115,7 @@ export class ScrapingService {
       console.log(error);
 
       return {
-        data: [],
+        data,
       };
     }
   }
@@ -135,6 +137,8 @@ export class ScrapingService {
     // Aguarda navegação pra página com os resultados
     await page.waitForNavigation();
 
+    const data: product[] = [];
+
     try {
       const links: string[] = await page.evaluate(() => {
         const cards = document.getElementsByClassName(
@@ -149,8 +153,6 @@ export class ScrapingService {
 
         return n;
       });
-
-      const data: product[] = [];
 
       for (let i = 0; i < links.length; i++) {
         if (links[i].startsWith('/')) {
@@ -180,7 +182,9 @@ export class ScrapingService {
               image,
             };
           } catch (error) {
-            console.log('erro no produto');
+            console.warn(error);
+
+            return;
           }
         });
 
@@ -201,7 +205,7 @@ export class ScrapingService {
       console.log(error);
 
       return {
-        data: [],
+        data,
       };
     }
   }
@@ -212,11 +216,13 @@ export class ScrapingService {
       all: async (
         category: string,
         searchString: string,
-      ): Promise<product[]> => {
+      ): Promise<{ data: product[] }> => {
         const ml = await this.getMLProducts(category, searchString);
         const bs = await this.getBuscapeProducts(category, searchString);
 
-        return [...ml.data, ...bs.data];
+        return {
+          data: [...ml.data, ...bs.data],
+        };
       },
       buscape: (category: string, searchString: string) => {
         return this.getBuscapeProducts(category, searchString);

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { ProductsController } from './products.controller';
+import { ProductsController } from './products/products.controller';
 import { PuppeteerModule } from 'nest-puppeteer';
-import { ScrapingService } from './scraping.service';
+import { ScrapingService } from './scraping/scraping.service';
 
 @Module({
   imports: [PuppeteerModule.forRoot()],
